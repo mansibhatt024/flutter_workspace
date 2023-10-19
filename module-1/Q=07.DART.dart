@@ -1,0 +1,1 @@
+//7. Write a program to convert temperature from degree centigrade to Fahrenheit.
