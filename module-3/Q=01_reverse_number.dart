@@ -70,38 +70,15 @@ class _ReversePrintPageState extends State<ReversePrintPage> {
                   backgroundColor: Colors.blueAccent,
                 ),
                 onPressed: () async {
-                  if (numberController.text.isEmpty) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Error"),
-                          content: const Text(
-                            "Please Enter the Value...",
-                            style: TextStyle(color: Colors.red, fontSize: 18),
-                          ),
-                          actions: [
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text("OK"),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  } else {
-              print(numberController.text);
-              int reversedNumber =
-              await reversePrinting(numberController.text);
-              setState(() {
-              resultController.text = reversedNumber.toString();
-              }
-              );
-                 }
-                            },
-                child: Text("SUBMIT"),),
+                  print(numberController.text);
+                  int reversedNumber =
+                  await reversePrinting(numberController.text);
+                  setState(() {
+                    resultController.text = reversedNumber.toString();
+                  });
+                },
+                child: const Text("SUBMIT"),
+              ),
             ),
             const SizedBox(height: 30),
             TextFormField(
