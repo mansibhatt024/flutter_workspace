@@ -81,7 +81,7 @@ class DisplayNumbersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<int> numbers = [];
-    for (int i = firstNumber; i <= secondNumber; i++) {
+    for (int i = firstNumber+1; i < secondNumber; i++) {
       numbers.add(i);
     }
 
