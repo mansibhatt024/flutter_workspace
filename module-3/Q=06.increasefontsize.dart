@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+//6. create an application to increate font size when plus button click and
+decrease when minus button click
+  import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
