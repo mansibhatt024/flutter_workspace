@@ -165,7 +165,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                                       width: 40,
                                       height: 40,
                                       decoration: BoxDecoration(
-                                        image: DecorationImage(image: AssetImage("assets/food/ingre1.png"),fit: BoxFit.cover,),
+                                        image: DecorationImage(image: AssetImage("images/inr1.jpg"),fit: BoxFit.cover,),
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
@@ -189,7 +189,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                                       width: 40,
                                       height: 40,
                                       decoration: BoxDecoration(
-                                        image: DecorationImage(image: AssetImage("assets/food/ingre2.png"),fit: BoxFit.cover,),
+                                        image: DecorationImage(image: AssetImage("images/inr2.jpg"),fit: BoxFit.cover,),
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
@@ -213,7 +213,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                                       width: 40,
                                       height: 40,
                                       decoration: BoxDecoration(
-                                        image: DecorationImage(image: AssetImage("assets/food/ingre3.png"),fit: BoxFit.cover,),
+                                        image: DecorationImage(image: AssetImage("images/inr3.jpg"),fit: BoxFit.cover,),
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
@@ -237,7 +237,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                                       width: 40,
                                       height: 40,
                                       decoration: BoxDecoration(
-                                        image: DecorationImage(image: AssetImage("assets/food/ingre4.png"),fit: BoxFit.cover,),
+                                        image: DecorationImage(image: AssetImage("images/inr4.jpg"),fit: BoxFit.cover,),
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
