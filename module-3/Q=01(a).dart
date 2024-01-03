@@ -30,7 +30,6 @@ class ColoredLayoutScreen extends StatelessWidget {
           height: 200,
           width: double.infinity,
           alignment: Alignment.center,
-
         ),
         SizedBox(height: 10),
         // Grid View with 4 squares
@@ -48,13 +47,14 @@ class ColoredLayoutScreen extends StatelessWidget {
           ],
         ),
         SizedBox(height: 10),
-        // Yellow Rectangle
-        Container(
-          color: Colors.yellow,
-          height: 200,
-          width: double.infinity,
-          alignment: Alignment.center,
-
+        // Yellow Squares
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(color: Colors.yellow, height: 100, width: 100),
+            Container(color: Colors.yellow, height: 100, width: 100),
+            Container(color: Colors.yellow, height: 100, width: 100),
+          ],
         ),
       ],
     );
