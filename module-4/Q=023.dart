@@ -1,4 +1,4 @@
-//22. Create an application with bottom navigation with 3 tabs Gallery,
+//23. Create an application with Navigation Drawer with 3 tabs Gallery,
 // audio and video and design each page with dummy data
 import 'package:flutter/material.dart';
 
@@ -10,55 +10,75 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bottom Navigation Example',
+      title: 'Drawer App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
-
-  final List<Widget> _pages = [
-    GalleryPage(),
-    AudioPage(),
-    VideoPage(),
-  ];
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bottom Navigation Example'),
+        title: Text('Drawer App'),
       ),
-      body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.image),
-            label: 'Gallery',
+      drawer: DrawerWidget(),
+    );
+  }
+}
+
+class DrawerWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text(
+              'Drawer Tabs App',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.audiotrack),
-            label: 'Audio',
+          ListTile(
+            title: Text('Gallery'),
+            onTap: () {
+              Navigator.pop(context); // Close the drawer
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => GalleryTab()),
+              );
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.videocam),
-            label: 'Video',
+          ListTile(
+            title: Text('Audio'),
+            onTap: () {
+              Navigator.pop(context); // Close the drawer
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AudioTab()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Video'),
+            onTap: () {
+              Navigator.pop(context); // Close the drawer
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => VideoTab()),
+              );
+            },
           ),
         ],
       ),
@@ -66,29 +86,100 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class GalleryPage extends StatelessWidget {
+class GalleryItem {
+  final String title;
+  final String imageUrl;
+
+  GalleryItem({required this.title, required this.imageUrl});
+}
+
+class AudioItem {
+  final String title;
+  final String audioUrl;
+
+  AudioItem({required this.title, required this.audioUrl});
+}
+
+class VideoItem {
+  final String title;
+  final String videoUrl;
+
+  VideoItem({required this.title, required this.videoUrl});
+}
+
+class GalleryTab extends StatelessWidget {
+  final List<GalleryItem> galleryItems = [
+    GalleryItem(title: 'Image 1', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOAQTM6JLn_OBsbvQnYCIuQRq1AV09HNtFSg&usqp=CAU'),
+    GalleryItem(title: 'Image 2', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLZiPC0Aingp5BAYV3ZTJqkHqcHyPLWyj4vQ&usqp=CAU'),
+    // Add more dummy data as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Gallery Page\n(Dummy data goes here)'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Gallery'),
+      ),
+      body: ListView.builder(
+        itemCount: galleryItems.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(galleryItems[index].title),
+            leading: Image.network(galleryItems[index].imageUrl),
+          );
+        },
+      ),
     );
   }
 }
 
-class AudioPage extends StatelessWidget {
+class AudioTab extends StatelessWidget {
+  final List<AudioItem> audioItems = [
+    AudioItem(title: 'Audio 1', audioUrl: 'https://www.saregama.com/ghazals-sufi/song/chithi-na-koi-sandeshjagjit-singh_47350'),
+    AudioItem(title: 'Audio 2', audioUrl: 'https://www.saregama.com/song/aawaz-do-humkohappy_47349'),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Audio Page\n(Dummy data goes here)'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Audio'),
+      ),
+      body: ListView.builder(
+        itemCount: audioItems.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(audioItems[index].title),
+            // You can use a package like audioplayers to play audio here
+          );
+        },
+      ),
     );
   }
 }
 
-class VideoPage extends StatelessWidget {
+class VideoTab extends StatelessWidget {
+  final List<VideoItem> videoItems = [
+    VideoItem(title: 'Video 1', videoUrl: 'https://www.youtube.com/watch?v=B0U9z4gtEtc'),
+    VideoItem(title: 'Video 2', videoUrl: 'https://www.youtube.com/watch?v=mwU0xr2jhIU&t=2550s'),
+    // Add more dummy data as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Video Page\n(Dummy data goes here)'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Video'),
+      ),
+      body: ListView.builder(
+        itemCount: videoItems.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(videoItems[index].title),
+            // You can use a package like chewie to display videos here
+          );
+        },
+      ),
     );
   }
 }
