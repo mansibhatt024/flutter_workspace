@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp>
 
   Future<List> getdata()async
   {
-    var response = await http.get(Uri.parse("https://mansiapidemo.000webhostapp.com/view.php"));
+    var response = await http.get(Uri.parse("https://mansiapidemo.000webhostapp.com/view1.php"));
     return jsonDecode(response.body);
 
   }
