@@ -23,10 +23,11 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
   TextEditingController timeInputController = TextEditingController();
   String priorityValue = 'Not Mention';
 
-  List<Map<String,dynamic>> userDataList = [];
+  List<Map<String, dynamic>> userDataList = [];
 
-  Future<void>addData()async{
-    await SQLiteDatabase.createData(nameController.text, descController.text,priorityValue, dateInputController.text, timeInputController.text,'');
+  Future<void> addData() async {
+    await SQLiteDatabase.createData(nameController.text, descController.text,
+        dateInputController.text, timeInputController.text, priorityValue, '');
     _refreshData();
   }
 
@@ -36,6 +37,7 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
       userDataList = data;
     });
   }
+
   @override
   void initState() {
     dateInputController.text = "";
@@ -52,22 +54,34 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
-        title: Text('User Enter Tasks',style: CustomStyle.AppStyle(color: Colors.white,fontSize: 18)),
+        backgroundColor: Colors.brown,
+        title: Text('User Enter Tasks',
+            style: CustomStyle.AppStyle(color: Colors.white, fontSize: 18)),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: size.width*0.07),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
         child: Column(
           children: [
-            SizedBox(height: 15,),
-            CustomTitle(title: 'Task Name*'),
-            CustomTextField(controller: nameController, hintText: 'Enter Task Name',),
+            SizedBox(
+              height: 15,
+            ),
+            CustomTitle(
+                title: 'Task Name*'),
+            CustomTextField(
+              controller: nameController,
+              hintText: 'Enter Task Name',
+            ),
             CustomTitle(title: 'Task Description*'),
-            CustomTextField(controller: descController, hintText: 'Enter Task Description',maxLines: 4),
+            CustomTextField(
+                controller: descController,
+                hintText: 'Enter Task Description',
+                maxLines: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Priority : ',style: CustomStyle.AppStyle(color: greyColor,fontSize: 14)),
+                Text('Priority : ',
+                    style:
+                    CustomStyle.AppStyle(color: greyColor, fontSize: 14)),
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,7 +90,7 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
                           title: 'High',
                           value: 'High',
                           groupValue: priorityValue,
-                          onChanged: (value){
+                          onChanged: (value) {
                             setState(() {
                               priorityValue = value!;
                             });
@@ -85,7 +99,7 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
                           title: 'Medium',
                           value: 'Medium',
                           groupValue: priorityValue,
-                          onChanged: (value){
+                          onChanged: (value) {
                             setState(() {
                               priorityValue = value!;
                             });
@@ -94,7 +108,7 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
                           title: 'Low',
                           value: 'Low',
                           groupValue: priorityValue,
-                          onChanged: (value){
+                          onChanged: (value) {
                             setState(() {
                               priorityValue = value!;
                             });
@@ -108,69 +122,85 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                    width: size.width*0.4,
-                    child:CustomDateTimeField(
+                    width: size.width * 0.4,
+                    child: CustomDateTimeField(
                       controller: dateInputController,
                       title: 'Date*',
-                      prefixIcon: Icon(Icons.calendar_today,color: primeColor,),
+                      prefixIcon: Icon(
+                        Icons.calendar_today,
+                        color: primeColor,
+                      ),
                       hintText: "Select Date",
                       onTap: () async {
                         DateTime? pickedDate = await showDatePicker(
-                            context: context, initialDate: DateTime.now(),
+                            context: context,
+                            initialDate: DateTime.now(),
                             firstDate: DateTime(2000),
-                            lastDate: DateTime(2101)
-                        );
+                            lastDate: DateTime(2101));
 
-                        if(pickedDate != null ){
+                        if (pickedDate != null) {
                           print(pickedDate);
-                          String formattedDate = DateFormat('dd-MM-yyy').format(pickedDate);
+                          String formattedDate =
+                          DateFormat('dd-MM-yyy').format(pickedDate);
                           print(formattedDate);
                           setState(() {
                             dateInputController.text = formattedDate;
                           });
-                        }else{
+                        } else {
                           print("Date is not selected");
                         }
                       },
-                    )
-                ),
+                    )),
                 Container(
-                    width: size.width*0.4,
-                    child:CustomDateTimeField(
+                    width: size.width * 0.4,
+                    child: CustomDateTimeField(
                       controller: timeInputController,
                       title: 'Time*',
-                      prefixIcon: Icon(Icons.watch_later_outlined,color: primeColor,),
+                      prefixIcon: Icon(
+                        Icons.watch_later_outlined,
+                        color: primeColor,
+                      ),
                       hintText: "Select Time",
                       onTap: () async {
-                        TimeOfDay? pickedTime =  await showTimePicker(
+                        TimeOfDay? pickedTime = await showTimePicker(
                           initialTime: TimeOfDay.now(),
                           context: context,
                         );
 
-                        if(pickedTime != null ){
+                        if (pickedTime != null) {
                           print(pickedTime.format(context));
-                          DateTime dateTime = DateTime(2022, 1, 1, pickedTime.hour, pickedTime.minute);
+                          DateTime dateTime = DateTime(
+                              2022, 1, 1, pickedTime.hour, pickedTime.minute);
                           setState(() {
-                            timeInputController.text = DateFormat('h:mm a').format(dateTime);;
+                            timeInputController.text =
+                                DateFormat('h:mm a').format(dateTime);
+                            ;
                           });
-                        }else{
+                        } else {
                           print("Time is not selected");
                         }
                       },
-                    )
-                ),
+                    )),
               ],
             ),
             Container(
-              width:  size.width*0.6,
-              margin: EdgeInsets.only(top: size.height*0.035),
-              child: ElevatedButton(onPressed: (){
-                validationCheck();
-              },
+              width:double.infinity,
+              margin: EdgeInsets.only(top: size.height * 0.035),
+              child: ElevatedButton(
+                  onPressed: () {
+                    validationCheck();
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: primeColor,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),elevation: 1.5),
-                  child: Text('Submit',style: CustomStyle.AppStyle(color: Colors.white,),)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      elevation: 1.5),
+                  child: Text(
+                    'Submit',
+                    style: CustomStyle.AppStyle(
+                      color: Colors.white,
+                    ),
+                  )),
             ),
           ],
         ),
@@ -178,16 +208,25 @@ class _UserDataEnterPageState extends State<UserDataEnterPage> {
     );
   }
 
-
-  void validationCheck(){
-    if(nameController.text.isEmpty || descController.text.isEmpty || priorityValue == 'Not Mention' || dateInputController.text.isEmpty || timeInputController.text.isEmpty){
-      CustomDialog(context: context, title: 'Please fill all details!',backgroundColor: Colors.redAccent,icon: Icons.error_outline);
-    }else{
+  void validationCheck() {
+    if (nameController.text.isEmpty ||
+        descController.text.isEmpty ||
+        priorityValue == 'Not Mention' ||
+        dateInputController.text.isEmpty ||
+        timeInputController.text.isEmpty) {
+      CustomDialog(
+          context: context,
+          title: 'Please fill all details!',
+          backgroundColor: Colors.brown,
+          icon: Icons.error_outline);
+    } else {
       addData();
-      CustomDialog(context: context, title: 'Successfully added Data...',icon: Icons.file_download_done);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+      CustomDialog(
+          context: context,
+          title: 'Successfully added Data...',
+          icon: Icons.file_download_done);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     }
   }
-
-
 }
