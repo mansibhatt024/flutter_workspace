@@ -103,7 +103,4 @@ class SQLiteDatabase {
     final db = await SQLiteDatabase.db();
     return await db.query('userData', where: 'name LIKE ?', whereArgs: ['%$name%']);
   }
-
-
-
 }
