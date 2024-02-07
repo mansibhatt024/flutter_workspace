@@ -33,8 +33,28 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> refreshUserData() async {
     final userData = await SQLiteDatabase.getAllData();
+
+    // Create a new list and assign the sorted values
+    List<Map<String, dynamic>> sortedUserData = List.from(userData);
+
+    // Sort the list based on priority (High, Medium, Low)
+    sortedUserData.sort((a, b) {
+      String priorityA = a['priority'];
+      String priorityB = b['priority'];
+
+      if (priorityA == 'High') {
+        return -1;
+      } else if (priorityA == 'Medium' && priorityB != 'High') {
+        return -1;
+      } else if (priorityA == 'Low' && priorityB == 'Low') {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
     setState(() {
-      getUserDataList = userData;
+      getUserDataList = sortedUserData;
     });
   }
 
@@ -397,6 +417,7 @@ class _HomePageState extends State<HomePage> {
                             }),
                       ],
                     ),
+
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
