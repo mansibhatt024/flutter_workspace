@@ -181,37 +181,67 @@ class HomeState extends State<HomePage1>
           padding: EdgeInsets.zero,
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Chandani Bachani"),
-              accountEmail: Text("chandanibachani@gmail.com"),
+              accountName: Text("mansi bhatt"),
+              accountEmail: Text("mansibhatt@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.orange,
                 child: Text(
-                  "C",
+                  "m",
                   style: TextStyle(fontSize: 40),
                 ),
               ),
             ),
             ListTile(
               leading: Icon(Icons.home),
-              onTap: () {
-                // Handle navigation to the home screen
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
+              title: Text(
+                'home',
+                style: TextStyle(
+                  color: Colors.white, // Set text color
+                  fontSize: 16.0, // Set text font size
+                ),
+              ),
               onTap: () {
                 // Handle navigation to the account screen
                 Navigator.pop(context);
               },
+              tileColor: Colors.blue, // Add your desired color here
+              selectedTileColor: Colors.lightBlue, // Add your desired selected color here
             ),
+
             ListTile(
-              leading: Icon(Icons.payment),
+              leading: Icon(Icons.account_circle),
+              title: Text(
+                'Account',
+                style: TextStyle(
+                  color: Colors.white, // Set text color
+                  fontSize: 16.0, // Set text font size
+                ),
+              ),
               onTap: () {
-                // Handle navigation to the payment screen
+                // Handle navigation to the account screen
                 Navigator.pop(context);
               },
+              tileColor: Colors.blue, // Add your desired color here
+              selectedTileColor: Colors.lightBlue, // Add your desired selected color here
             ),
+
+            ListTile(
+              leading: Icon(Icons.payment),
+              title: Text(
+                'payment',
+                style: TextStyle(
+                  color: Colors.white, // Set text color
+                  fontSize: 16.0, // Set text font size
+                ),
+              ),
+              onTap: () {
+                // Handle navigation to the account screen
+                Navigator.pop(context);
+              },
+              tileColor: Colors.blue, // Add your desired color here
+              selectedTileColor: Colors.lightBlue, // Add your desired selected color here
+            )
+
           ],
         ),
       ),
